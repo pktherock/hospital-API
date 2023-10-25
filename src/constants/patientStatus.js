@@ -1,0 +1,14 @@
+const PATIENT_STATUS = {
+  NEGATIVE: "NEGATIVE",
+  TRAVELED_QUARANTINE: "TRAVELED_QUARANTINE",
+  SYMPTOMS_QUARANTINE: "SYMPTOMS_QUARANTINE",
+  POSITIVE_ADMIT: "POSITIVE_ADMIT",
+};
+
+Object.freeze(PATIENT_STATUS);
+
+const patientStatus = Object.keys(PATIENT_STATUS);
+
+export { patientStatus };
+
+export default PATIENT_STATUS;

@@ -16,7 +16,6 @@
 - Logging Request and errors
 - Extensible code flow and Folder structure
 - Best env variable setup
-- Track User Last Visit
 
 ## Code Flow
 
@@ -24,7 +23,7 @@
 - Server points to our specific routes
 - before the controller, it may be that there will be middlewares or validators or maybe both
 - If no Middleware of the validator then the request goes to the specific controller
-- Controllers will send back the response, no need to call services
+- Controllers will send back the response, if no need to call services
 - Services are basically functions that help us to get data from DB (here is Mongo DB)
 - Service may use models to save data in some specific format
 
@@ -62,10 +61,12 @@ Image for better understanding
     -> To create jwt token
 12. nodemailer
     -> To send email
-13. uuid
-    -> To generate a random ID
-14. winston
+13. winston
     -> It helps us to log the req or res in a very easy way
+14. mongoose 
+    -> to interact with mongodb
+15. connect-mongo
+    -> to store all sessions in mongodb
 
 ## How to run this project locally
 
@@ -74,11 +75,8 @@ Image for better understanding
 - create all env variable which is given in the .env.example file with proper info
 - then run npm install (to install all packages used in this project)
 - then run npm run start
-- go to the link shown in the terminal
-- On the login page, one test user info is there, you can log in with that email ID and password
-- I highly recommend creating another user by signUp for better understanding.
+- go to the link shown in the terminal all api docs are there
 - Now you are good to go
-- keep in mind that your activity are stored in localDB(cache) so after server restarts all data will be reseated
 - Thank YOU
 
 ### Live Demo Link

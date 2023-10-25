@@ -22,7 +22,8 @@ import {
   errorHandler,
   notFoundHandler,
 } from "../src/api/common/index.js";
-import jwtAuth from "./api/v1/middlewares/jwtAuth.middleware.js";
+import { patientRouter } from "./api/v1/features/patient/index.js";
+import { reportRouter } from "./api/v1/features/report/index.js";
 
 const app = express();
 
@@ -85,12 +86,14 @@ app.use(apiLimiter);
 // request logger middleware
 app.use(loggerMiddleware);
 
-app.get("/api/v1/", jwtAuth, (req, res) => {
-  return res.send("You are logged in");
-});
-
 // all auth routes
 app.use("/api/v1/auth", authRouter);
+
+// all patient routes
+app.use("/api/v1/patients", patientRouter);
+
+// reports routes
+app.use("/api/v1/reports", reportRouter);
 
 // Middleware to handle 405(not allowed) error
 // Api end point not found
