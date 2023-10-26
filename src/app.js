@@ -77,7 +77,7 @@ app.use(helmet());
 app.use(compression());
 
 // Enable trust proxy to trust X-Forwarded-For header
-// app.set("trust proxy", true);
+app.set("trust proxy", true);
 
 const apiLimiter = rateLimit({
   windowMs: 1000, //* 1 minutes
@@ -85,7 +85,7 @@ const apiLimiter = rateLimit({
   message: "Too many requests from this IP, please try again later.",
   standardHeaders: true, //* Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, //* Disable the `X-RateLimit-*` headers
-  // trustProxy: true, //* Trust the X-Forwarded-For header (if you're behind a proxy/load balancer)
+  trustProxy: true, //* Trust the X-Forwarded-For header (if you're behind a proxy/load balancer)
 });
 
 //* Apply the rate limiter to all requests
