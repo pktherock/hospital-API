@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api/v1"
+      "url": "https://hospital-api-la56.onrender.com/api/v1"
     }
   ],
   "components": {
