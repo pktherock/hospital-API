@@ -77,7 +77,7 @@ app.use(helmet());
 app.use(compression());
 
 // Enable trust proxy to trust X-Forwarded-For header
-app.set("trust proxy", true);
+app.set("trust proxy", 1);
 
 const apiLimiter = rateLimit({
   windowMs: 1000, //* 1 minutes
