@@ -41,6 +41,7 @@ Steps to compete this project
     - npm i express-rate-limit
     - npm i compression
     - npm i winston
+    - npm i swagger-ui-express
 
 15. Configure send email function ✅
 16. Authentication an Authorization ✅

@@ -52,9 +52,9 @@ Image for better understanding
 7. express-rate-limit
    -> To prevent or limit repeated requests to our APIs (a normal user can not send more than 60 request per second)
 8. express-session
-    -> To manage Sessions
+   -> To manage Sessions
 9. express-validator
-    -> To validate request body data
+   -> To validate request body data
 10. helmet
     -> Helmet helps secure Express apps by setting HTTP response headers.
 11. jsonwebtoken
@@ -63,10 +63,12 @@ Image for better understanding
     -> To send email
 13. winston
     -> It helps us to log the req or res in a very easy way
-14. mongoose 
+14. mongoose
     -> to interact with mongodb
 15. connect-mongo
     -> to store all sessions in mongodb
+16. swagger-ui-express
+    -> to show api docs for better usability of api end points
 
 ## How to run this project locally
 
@@ -76,6 +78,8 @@ Image for better understanding
 - then run npm install (to install all packages used in this project)
 - then run npm run start
 - go to the link shown in the terminal all api docs are there
+- you can use postman as well, i have attached one postman-collection
+  import and change accordingly base on api docs
 - Now you are good to go
 - Thank YOU
 
