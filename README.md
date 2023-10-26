@@ -85,4 +85,4 @@ Image for better understanding
 
 ### Live Demo Link
 
-[Live Demo Link]()
+[Live Demo Link](https://hospital-api-la56.onrender.com)
