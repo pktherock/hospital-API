@@ -76,6 +76,9 @@ app.use(helmet());
 //* compress all responses
 app.use(compression());
 
+// Enable trust proxy to trust X-Forwarded-For header
+app.set("trust proxy", true);
+
 const apiLimiter = rateLimit({
   windowMs: 1000, //* 1 minutes
   max: 20, //* Limit each IP to 20 requests per `window` (here, per 1 minutes)
