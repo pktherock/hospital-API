@@ -20,7 +20,7 @@ Steps to compete this project
         - Update User
         - Reset Password
         - Delete User (delete login from portal)
-      - Patient (will be handled by doctor only)
+      - Patient (will be handled by doctor only) ✅
         - Register patient by mobile number (not a login feature)
         - Crate report
         - Update report
