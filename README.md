@@ -83,6 +83,10 @@ Image for better understanding
 - Now you are good to go
 - Thank YOU
 
+Note: 
+   - if you put mongoUri of atlas, then please store user and password in .env file and uncomment in db.config.js (user and pass) refer .env.example file
+   - if you are using local mongodb and no user and password is required then comment user and password in db.config.js
+
 ### Live Demo Link
 
 [Live Demo Link](https://hospital-api-la56.onrender.com)
