@@ -1,0 +1,496 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "description": "Hospital API🌹Note: only login, you don't need to put any key anywhere, I have used both access and refresh token key in session, so automatically while making request my server will extract it. 'Happy🚀 testing!' 🌹",
+    "title": "Hospital API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    }
+  },
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Sign Up",
+        "description": "This API endpoint is to register with userName email and password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "userName",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "user created"
+          },
+          "400": {
+            "description": "Validation Error"
+          },
+          "409": {
+            "description": "Resource already exist with this info."
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "login to get jwt token",
+        "description": "This API endpoint is to login with email and password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Validation Error"
+          },
+          "401": {
+            "description": "Incorrect Credentials"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "summary": "logout feature",
+        "description": "This API endpoint is to logout",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/auth/update": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "summary": "update username and email",
+        "description": "This API endpoint is to update user name and email",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "userName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/request-reset-password": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Request Reset password",
+        "description": "This API endpoint is to request reset password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/auth/token-validate": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Validate Reset password",
+        "description": "This API endpoint is to request reset password",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "token to get check validity"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "userId id to check token is valid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Reset password",
+        "description": "This API endpoint is to reset password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "token",
+                  "userId",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/auth/delete-user": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "summary": "delete user feature",
+        "description": "This API endpoint is to user info from portal",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/patients/register": {
+      "post": {
+        "tags": [
+          "Patient"
+        ],
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "summary": "Register Patient",
+        "description": "This API endpoint is to register Patient with mobile number",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mobileNumber": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "mobileNumber"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/patients/{patientId}/create-report": {
+      "post": {
+        "tags": [
+          "Patient"
+        ],
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "summary": "Create Patient Report",
+        "description": "This API endpoint is to generate report for registered patients",
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "patientId is required in required to create report"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "status",
+                  "date"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/patients/{patientId}/all-reports": {
+      "get": {
+        "tags": [
+          "Patient"
+        ],
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "summary": "Get Patient All Report",
+        "description": "This API endpoint is to all the report in old to new",
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "patientId is required in required to get all report"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/reports/{status}": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "JWT": {}
+          }
+        ],
+        "summary": "Get All Report by status",
+        "description": "This API endpoint is to all the report according to status",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "NEGATIVE",
+                "TRAVELED_QUARANTINE",
+                "SYMPTOMS_QUARANTINE",
+                "POSITIVE_ADMIT"
+              ],
+              "example": "NEGATIVE"
+            },
+            "required": true,
+            "description": "patientId is required in required to get all report"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  }
+}

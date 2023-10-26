@@ -1,4 +1,5 @@
 // Core modules
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 // third party modules
@@ -12,6 +13,7 @@ import rateLimit from "express-rate-limit";
 import compression from "compression";
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
+import swaggerUI from "swagger-ui-express";
 
 // user defined modules
 import config from "./config/config.js";
@@ -24,6 +26,9 @@ import {
 } from "../src/api/common/index.js";
 import { patientRouter } from "./api/v1/features/patient/index.js";
 import { reportRouter } from "./api/v1/features/report/index.js";
+
+// api doc (json file)
+const apiDocs = JSON.parse(await readFile(path.resolve("swagger.json")));
 
 const app = express();
 
@@ -94,6 +99,11 @@ app.use("/api/v1/patients", patientRouter);
 
 // reports routes
 app.use("/api/v1/reports", reportRouter);
+
+// for api documentation using swagger.
+// ? Keeping swagger code at the end so that we can load swagger on "/" or "/api/v1/docs" route
+app.use(["/api/v1/docs", "/"], swaggerUI.serve);
+app.get(["/api/v1/docs", "/"], swaggerUI.setup(apiDocs));
 
 // Middleware to handle 405(not allowed) error
 // Api end point not found
